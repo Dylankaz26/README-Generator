@@ -1,10 +1,9 @@
-// TODO: Include packages needed for this application
+
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./generateMarkdown.js');
+const generateMarkdown = require('./utils/generateMarkdown.js');
 const path = require('path');
 
-// TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -24,7 +23,7 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: 'Please write a short description of your project.'
+        message: 'Please write a brief description of your project.'
     },
     {
         type: 'list',
@@ -35,19 +34,19 @@ const questions = [
     {
         type: 'input',
         name: 'installation',
-        message: 'What command should be run to install dependencies?',
+        message: 'What command should be ran to install dependencies?',
         default: 'npm i'
     },
     {
         type: 'input',
         name: 'test',
-        message: 'What command should be run to run tests?',
+        message: 'What command should be ran to run tests?',
         default: 'npm test'
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'What does the user need to know about using the repo?'
+        message: '"What important information or instructions should users be aware of when using this repository?"'
     },
     {
         type: 'input',
@@ -56,12 +55,10 @@ const questions = [
     }
 ];
 
-// TODO: Create a function to write README file
 function writeToFile(fileName, data) {
      fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
-// TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
     .then((responses) => {
@@ -70,5 +67,4 @@ function init() {
     });
 }
 
-// Function call to initialize app
 init();
